@@ -1,0 +1,49 @@
+/* ============================================================
+   PRODUCT RATING — Stars + Vote count
+   ============================================================ */
+
+.product-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ── Chaque étoile ───────────────────────────────────────── */
+
+.product-rating span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.product-rating span svg {
+  cursor: pointer;
+  transition:
+    transform   0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter      0.15s ease,
+    drop-shadow 0.15s ease;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+  display: block;
+}
+
+/* Hover : légère explosion */
+.product-rating span:hover svg {
+  transform: scale(1.3) rotate(-5deg);
+  filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.55));
+}
+
+/* Étoile active (fill gold) : légère lueur */
+.product-rating span svg[fill="#FFD700"] {
+  filter: drop-shadow(0 1px 3px rgba(255, 200, 0, 0.40));
+}
+
+/* ── Compteur de votes ───────────────────────────────────── */
+
+.product-rating .vote-count {
+  margin-left: 7px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #94A3B8;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1;
+}

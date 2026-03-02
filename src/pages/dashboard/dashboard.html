@@ -1,0 +1,214 @@
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">CM</div>
+                <span>Centre Commercial</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html" class="active">Tableau de bord</a></li>
+                    <li><a href="products.html">Produits</a></li>
+                    <li><a href="orders.html">Commandes</a></li>
+                    <li><a href="payments.html">Paiements</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="user-avatar">AD</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Tableau de Bord</h1>
+            <p class="page-subtitle">Vue d'ensemble de votre centre commercial</p>
+        </div>
+        
+        <!-- Welcome Alert -->
+        <div class="alert alert-success">
+            <strong>👋 Bienvenue !</strong> Vous avez 3 nouvelles commandes et 2 paiements en attente de validation.
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Chiffre d'affaires du jour</div>
+                <div class="stat-value">12 456,78 €</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Commandes aujourd'hui</div>
+                <div class="stat-value">67</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Nouveaux clients</div>
+                <div class="stat-value">23</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Taux de conversion</div>
+                <div class="stat-value">3.4%</div>
+            </div>
+        </div>
+        
+        <!-- Charts -->
+        <div class="dashboard-grid">
+            <div class="chart-card">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">
+                    Ventes de la semaine
+                </h3>
+                <div class="chart-placeholder">
+                    📊 Graphique des ventes
+                </div>
+            </div>
+            
+            <div class="chart-card">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">
+                    Répartition par catégorie
+                </h3>
+                <div class="chart-placeholder">
+                    📈 Graphique en camembert
+                </div>
+            </div>
+            
+            <div class="chart-card">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">
+                    Tendances mensuelles
+                </h3>
+                <div class="chart-placeholder">
+                    📉 Graphique de tendances
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Actions Rapides</h2>
+            </div>
+            
+            <div class="quick-actions">
+                <a href="orders.html" class="quick-action-btn">
+                    <div class="quick-action-icon">➕</div>
+                    <div class="quick-action-label">Nouvelle Commande</div>
+                </a>
+                
+                <a href="products.html" class="quick-action-btn">
+                    <div class="quick-action-icon">📦</div>
+                    <div class="quick-action-label">Ajouter un Produit</div>
+                </a>
+                
+                <a href="payments.html" class="quick-action-btn">
+                    <div class="quick-action-icon">💳</div>
+                    <div class="quick-action-label">Gérer les Paiements</div>
+                </a>
+                
+                <a href="#" class="quick-action-btn">
+                    <div class="quick-action-icon">👥</div>
+                    <div class="quick-action-label">Nouveau Client</div>
+                </a>
+                
+                <a href="#" class="quick-action-btn">
+                    <div class="quick-action-icon">📊</div>
+                    <div class="quick-action-label">Rapports</div>
+                </a>
+                
+                <a href="#" class="quick-action-btn">
+                    <div class="quick-action-icon">⚙️</div>
+                    <div class="quick-action-label">Paramètres</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Recent Orders -->
+        <div class="card">
+            <div class="card-header">
+                <div class="flex-between">
+                    <h2 class="card-title">Commandes Récentes</h2>
+                    <a href="orders.html" class="btn btn-outline btn-sm">Voir tout</a>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Commande</th>
+                            <th>Client</th>
+                            <th>Produits</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#CMD-1234</td>
+                            <td>Marie Dubois</td>
+                            <td>6 articles</td>
+                            <td>1 499,93 €</td>
+                            <td><span class="badge badge-success">Livrée</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1235</td>
+                            <td>Pierre Martin</td>
+                            <td>2 articles</td>
+                            <td>299,99 €</td>
+                            <td><span class="badge badge-warning">En préparation</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1236</td>
+                            <td>Sophie Laurent</td>
+                            <td>1 article</td>
+                            <td>789,00 €</td>
+                            <td><span class="badge badge-primary">Confirmée</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1237</td>
+                            <td>Luc Bernard</td>
+                            <td>3 articles</td>
+                            <td>2 199,00 €</td>
+                            <td><span class="badge badge-success">Livrée</span></td>
+                        </tr>
+                        <tr>
+                            <td>#CMD-1238</td>
+                            <td>Anne Petit</td>
+                            <td>4 articles</td>
+                            <td>159,99 €</td>
+                            <td><span class="badge badge-warning">En transit</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Low Stock Alert -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">⚠️ Alertes Stock Faible</h2>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div style="padding: 1rem; background-color: #fef3c7; border-radius: var(--border-radius); border-left: 4px solid var(--warning);">
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">Machine à Café Deluxe</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                        Stock restant: 8 unités - #PRD003
+                    </div>
+                </div>
+                
+                <div style="padding: 1rem; background-color: #fef3c7; border-radius: var(--border-radius); border-left: 4px solid var(--warning);">
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">Canapé d'angle Moderne</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                        Stock restant: 5 unités - #PRD007
+                    </div>
+                </div>
+                
+                <div style="padding: 1rem; background-color: #fee2e2; border-radius: var(--border-radius); border-left: 4px solid var(--danger);">
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">Pack Pâtes Premium (x10)</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                        Rupture de stock - #PRD005
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

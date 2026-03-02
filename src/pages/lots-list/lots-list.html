@@ -1,0 +1,430 @@
+ <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">CM</div>
+                <span>Centre Commercial</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html">Tableau de bord</a></li>
+                    <li><a href="shops.html">Boutiques</a></li>
+                    <li><a href="lots-list.html" class="active">Lots</a></li>
+                    <li><a href="lots-assign.html">Attribuer un lot</a></li>
+                    <li><a href="payments.html">Paiements</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="user-avatar">AD</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Gestion des Lots Commerciaux</h1>
+            <p class="page-subtitle">Vue d'ensemble et gestion de tous les lots du centre commercial</p>
+        </div>
+        
+        <!-- Stats -->
+        <div class="lots-stats">
+            <div class="stat-card-lot">
+                <div class="stat-label">Total Lots</div>
+                <div class="stat-value">256</div>
+            </div>
+            <div class="stat-card-lot available">
+                <div class="stat-label">Disponibles</div>
+                <div class="stat-value">42</div>
+            </div>
+            <div class="stat-card-lot occupied">
+                <div class="stat-label">Occupés</div>
+                <div class="stat-value">198</div>
+            </div>
+            <div class="stat-card-lot maintenance">
+                <div class="stat-label">En maintenance</div>
+                <div class="stat-value">8</div>
+            </div>
+            <div class="stat-card-lot">
+                <div class="stat-label">Réservés</div>
+                <div class="stat-value">8</div>
+            </div>
+            <div class="stat-card-lot">
+                <div class="stat-label">Taux d'occupation</div>
+                <div class="stat-value">77.3%</div>
+            </div>
+        </div>
+        
+        <!-- Filters and Actions -->
+        <div class="card">
+            <div class="flex-between mb-3">
+                <div class="search-bar" style="flex: 1; max-width: 500px; margin: 0;">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Rechercher par numéro de lot, locataire..."
+                    >
+                </div>
+                
+                <div class="flex gap-2">
+                    <button class="btn btn-outline">📥 Exporter</button>
+                    <a href="lots-assign.html" class="btn btn-primary">➕ Attribuer un lot</a>
+                </div>
+            </div>
+            
+            <div class="quick-filters">
+                <button class="quick-filter-btn active">Tous les lots (256)</button>
+                <button class="quick-filter-btn">🟢 Disponibles (42)</button>
+                <button class="quick-filter-btn">🔴 Occupés (198)</button>
+                <button class="quick-filter-btn">🟡 En maintenance (8)</button>
+                <button class="quick-filter-btn">🔵 Réservés (8)</button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="floor-filter">Niveau</label>
+                    <select id="floor-filter" class="form-select">
+                        <option value="">Tous les niveaux</option>
+                        <option value="0">Niveau 0 - Rez-de-chaussée</option>
+                        <option value="1">Niveau 1 - Premier étage</option>
+                        <option value="2">Niveau 2 - Deuxième étage</option>
+                        <option value="3">Niveau 3 - Troisième étage</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="surface-filter">Surface</label>
+                    <select id="surface-filter" class="form-select">
+                        <option value="">Toutes surfaces</option>
+                        <option value="0-50">Moins de 50 m²</option>
+                        <option value="50-100">50 - 100 m²</option>
+                        <option value="100-200">100 - 200 m²</option>
+                        <option value="200+">Plus de 200 m²</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="rent-filter">Loyer mensuel</label>
+                    <select id="rent-filter" class="form-select">
+                        <option value="">Tous les loyers</option>
+                        <option value="0-2000">Moins de 2 000 €</option>
+                        <option value="2000-5000">2 000 - 5 000 €</option>
+                        <option value="5000-10000">5 000 - 10 000 €</option>
+                        <option value="10000+">Plus de 10 000 €</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="activity-filter">Activité</label>
+                    <select id="activity-filter" class="form-select">
+                        <option value="">Toutes activités</option>
+                        <option value="mode">Mode & Vêtements</option>
+                        <option value="electronique">Électronique</option>
+                        <option value="alimentation">Alimentation & Restauration</option>
+                        <option value="beaute">Beauté & Bien-être</option>
+                        <option value="maison">Maison & Décoration</option>
+                        <option value="sport">Sport & Loisirs</option>
+                        <option value="culture">Culture & Divertissement</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lots Table -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Liste des Lots</h2>
+            </div>
+            
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Lot</th>
+                            <th>Niveau</th>
+                            <th>Surface</th>
+                            <th>Statut</th>
+                            <th>Locataire</th>
+                            <th>Loyer mensuel</th>
+                            <th>Bail</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>#A01</strong></td>
+                            <td>Niveau 2</td>
+                            <td>75 m²</td>
+                            <td>
+                                <span class="lot-status-dot available"></span>
+                                <span class="badge badge-success">Disponible</span>
+                            </td>
+                            <td>─</td>
+                            <td>2 500,00 €</td>
+                            <td>─</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <a href="lots-assign.html" class="action-btn" title="Attribuer">📝</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#A02</strong></td>
+                            <td>Niveau 2</td>
+                            <td>68 m²</td>
+                            <td>
+                                <span class="lot-status-dot occupied"></span>
+                                <span class="badge badge-danger">Occupé</span>
+                            </td>
+                            <td>Élégance Fashion</td>
+                            <td>2 350,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Début: 01/01/2024</div>
+                                    <div>Fin: 31/12/2026</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Contrat">📄</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#A03</strong></td>
+                            <td>Niveau 2</td>
+                            <td>52 m²</td>
+                            <td>
+                                <span class="lot-status-dot available"></span>
+                                <span class="badge badge-success">Disponible</span>
+                            </td>
+                            <td>─</td>
+                            <td>1 800,00 €</td>
+                            <td>─</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <a href="lots-assign.html" class="action-btn" title="Attribuer">📝</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#B01</strong></td>
+                            <td>Niveau 2</td>
+                            <td>120 m²</td>
+                            <td>
+                                <span class="lot-status-dot occupied"></span>
+                                <span class="badge badge-danger">Occupé</span>
+                            </td>
+                            <td>Tech World</td>
+                            <td>4 200,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Début: 15/03/2023</div>
+                                    <div>Fin: 14/03/2032</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Contrat">📄</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#B02</strong></td>
+                            <td>Niveau 2</td>
+                            <td>85 m²</td>
+                            <td>
+                                <span class="lot-status-dot reserved"></span>
+                                <span class="badge badge-primary">Réservé</span>
+                            </td>
+                            <td>Sport Plus (en attente)</td>
+                            <td>2 950,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Signature prévue:</div>
+                                    <div>15/03/2026</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Finaliser">✓</button>
+                                    <button class="action-btn" title="Annuler">✕</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#B03</strong></td>
+                            <td>Niveau 2</td>
+                            <td>95 m²</td>
+                            <td>
+                                <span class="lot-status-dot occupied"></span>
+                                <span class="badge badge-danger">Occupé</span>
+                            </td>
+                            <td>Beauté & Charme</td>
+                            <td>3 200,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Début: 01/06/2022</div>
+                                    <div>Fin: 31/05/2031</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Contrat">📄</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#C01</strong></td>
+                            <td>Niveau 1</td>
+                            <td>45 m²</td>
+                            <td>
+                                <span class="lot-status-dot maintenance"></span>
+                                <span class="badge badge-warning">En maintenance</span>
+                            </td>
+                            <td>─</td>
+                            <td>1 500,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Retour prévu:</div>
+                                    <div>28/02/2026</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Suivi travaux">🔧</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#C02</strong></td>
+                            <td>Niveau 1</td>
+                            <td>180 m²</td>
+                            <td>
+                                <span class="lot-status-dot available"></span>
+                                <span class="badge badge-success">Disponible</span>
+                            </td>
+                            <td>─</td>
+                            <td>6 500,00 €</td>
+                            <td>─</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <a href="lots-assign.html" class="action-btn" title="Attribuer">📝</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#D01</strong></td>
+                            <td>Niveau 0</td>
+                            <td>65 m²</td>
+                            <td>
+                                <span class="lot-status-dot occupied"></span>
+                                <span class="badge badge-danger">Occupé</span>
+                            </td>
+                            <td>Pizza Delizia</td>
+                            <td>2 800,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Début: 10/09/2021</div>
+                                    <div>Fin: 09/09/2030</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Contrat">📄</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#D02</strong></td>
+                            <td>Niveau 0</td>
+                            <td>110 m²</td>
+                            <td>
+                                <span class="lot-status-dot occupied"></span>
+                                <span class="badge badge-danger">Occupé</span>
+                            </td>
+                            <td>Déco Maison</td>
+                            <td>3 800,00 €</td>
+                            <td>
+                                <div style="font-size: 0.875rem;">
+                                    <div>Début: 01/02/2025</div>
+                                    <div>Fin: 31/01/2034</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir détails">👁️</button>
+                                    <button class="action-btn" title="Contrat">📄</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex-between mt-3">
+                <p class="text-secondary">Affichage de 1-10 sur 256 lots</p>
+                <div class="flex gap-1">
+                    <button class="btn btn-outline btn-sm">Précédent</button>
+                    <button class="btn btn-primary btn-sm">1</button>
+                    <button class="btn btn-outline btn-sm">2</button>
+                    <button class="btn btn-outline btn-sm">3</button>
+                    <button class="btn btn-outline btn-sm">...</button>
+                    <button class="btn btn-outline btn-sm">26</button>
+                    <button class="btn btn-outline btn-sm">Suivant</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🔔 Baux à renouveler (30 jours)</h3>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="padding: 0.75rem; background-color: var(--background); border-radius: 6px;">
+                        <div style="font-weight: 600;">#B05 - Mode Tendance</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Expiration: 15/03/2026</div>
+                    </div>
+                    <div style="padding: 0.75rem; background-color: var(--background); border-radius: 6px;">
+                        <div style="font-weight: 600;">#C12 - Bijouterie Luxe</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Expiration: 22/03/2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💰 Revenus mensuels</h3>
+                </div>
+                <div class="rental-info">
+                    <div class="rental-info-item">
+                        <div class="rental-info-label">Total Loyers</div>
+                        <div class="rental-info-value">546 750 €</div>
+                    </div>
+                    <div class="rental-info-item">
+                        <div class="rental-info-label">Total Charges</div>
+                        <div class="rental-info-value">98 450 €</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

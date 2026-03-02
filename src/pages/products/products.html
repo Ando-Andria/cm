@@ -1,0 +1,291 @@
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">CM</div>
+                <span>Centre Commercial</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html">Tableau de bord</a></li>
+                    <li><a href="products.html" class="active">Produits</a></li>
+                    <li><a href="orders.html">Commandes</a></li>
+                    <li><a href="payments.html">Paiements</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="user-avatar">AD</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Gestion des Produits</h1>
+            <p class="page-subtitle">Gérez votre catalogue de produits du centre commercial</p>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Produits</div>
+                <div class="stat-value">1,234</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">En Stock</div>
+                <div class="stat-value">987</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Stock Faible</div>
+                <div class="stat-value">45</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Rupture de Stock</div>
+                <div class="stat-value">12</div>
+            </div>
+        </div>
+        
+        <!-- Filters and Actions -->
+        <div class="card">
+            <div class="flex-between mb-3">
+                <div class="search-bar" style="flex: 1; max-width: 400px; margin: 0;">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Rechercher un produit..."
+                    >
+                </div>
+                
+                <button class="btn btn-primary">
+                    ➕ Nouveau Produit
+                </button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="category">Catégorie</label>
+                    <select id="category" class="form-select">
+                        <option value="">Toutes les catégories</option>
+                        <option value="electronique">Électronique</option>
+                        <option value="vetements">Vêtements</option>
+                        <option value="alimentation">Alimentation</option>
+                        <option value="maison">Maison & Déco</option>
+                        <option value="sport">Sport & Loisirs</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="status">Statut Stock</label>
+                    <select id="status" class="form-select">
+                        <option value="">Tous les statuts</option>
+                        <option value="stock">En stock</option>
+                        <option value="low">Stock faible</option>
+                        <option value="out">Rupture</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="price-range">Fourchette de prix</label>
+                    <select id="price-range" class="form-select">
+                        <option value="">Tous les prix</option>
+                        <option value="0-50">0 - 50 €</option>
+                        <option value="50-100">50 - 100 €</option>
+                        <option value="100-500">100 - 500 €</option>
+                        <option value="500+">500 € et plus</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Table -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Liste des Produits</h2>
+            </div>
+            
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Réf.</th>
+                            <th>Nom du Produit</th>
+                            <th>Catégorie</th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PRD001</td>
+                            <td>Smartphone Galaxy X12</td>
+                            <td>Électronique</td>
+                            <td>799,99 €</td>
+                            <td>45</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD002</td>
+                            <td>T-shirt Premium Coton Bio</td>
+                            <td>Vêtements</td>
+                            <td>29,99 €</td>
+                            <td>150</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD003</td>
+                            <td>Machine à Café Deluxe</td>
+                            <td>Maison & Déco</td>
+                            <td>149,99 €</td>
+                            <td>8</td>
+                            <td><span class="badge badge-warning">Stock faible</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD004</td>
+                            <td>Vélo Électrique Pro</td>
+                            <td>Sport & Loisirs</td>
+                            <td>1299,00 €</td>
+                            <td>12</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD005</td>
+                            <td>Pack Pâtes Premium (x10)</td>
+                            <td>Alimentation</td>
+                            <td>15,99 €</td>
+                            <td>0</td>
+                            <td><span class="badge badge-danger">Rupture</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD006</td>
+                            <td>Écouteurs Sans Fil Premium</td>
+                            <td>Électronique</td>
+                            <td>179,99 €</td>
+                            <td>67</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD007</td>
+                            <td>Canapé d'angle Moderne</td>
+                            <td>Maison & Déco</td>
+                            <td>899,00 €</td>
+                            <td>5</td>
+                            <td><span class="badge badge-warning">Stock faible</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD008</td>
+                            <td>Montre Connectée Sport</td>
+                            <td>Électronique</td>
+                            <td>249,99 €</td>
+                            <td>32</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD009</td>
+                            <td>Jeans Slim Fit Homme</td>
+                            <td>Vêtements</td>
+                            <td>59,99 €</td>
+                            <td>89</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD010</td>
+                            <td>Ballon de Basket Pro</td>
+                            <td>Sport & Loisirs</td>
+                            <td>39,99 €</td>
+                            <td>54</td>
+                            <td><span class="badge badge-success">En stock</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="action-btn" title="Voir">👁️</button>
+                                    <button class="action-btn" title="Modifier">✏️</button>
+                                    <button class="action-btn" title="Supprimer">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex-between mt-3">
+                <p class="text-secondary">Affichage de 1-10 sur 1,234 produits</p>
+                <div class="flex gap-1">
+                    <button class="btn btn-outline btn-sm">Précédent</button>
+                    <button class="btn btn-primary btn-sm">1</button>
+                    <button class="btn btn-outline btn-sm">2</button>
+                    <button class="btn btn-outline btn-sm">3</button>
+                    <button class="btn btn-outline btn-sm">...</button>
+                    <button class="btn btn-outline btn-sm">124</button>
+                    <button class="btn btn-outline btn-sm">Suivant</button>
+                </div>
+            </div>
+        </div>
+    </main>

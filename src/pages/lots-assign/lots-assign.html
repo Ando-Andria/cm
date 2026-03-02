@@ -1,0 +1,413 @@
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">CM</div>
+                <span>Centre Commercial</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html">Tableau de bord</a></li>
+                    <li><a href="shops.html">Boutiques</a></li>
+                    <li><a href="lots-list.html">Lots</a></li>
+                    <li><a href="lots-assign.html" class="active">Attribuer un lot</a></li>
+                    <li><a href="payments.html">Paiements</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="user-avatar">AD</div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Attribution de Lot Commercial</h1>
+            <p class="page-subtitle">Créez et attribuez un lot à un client ou locataire</p>
+        </div>
+        
+        <div class="lot-form-container">
+            <!-- Alert -->
+            <div class="alert alert-success">
+                <strong>ℹ️ Information</strong> Sélectionnez un lot disponible sur le plan ci-dessous pour commencer l'attribution.
+            </div>
+            
+            <!-- Floor Plan -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Plan du Centre Commercial - Niveau 2</h2>
+                </div>
+                
+                <div class="floor-plan">
+                    <div class="form-group" style="max-width: 300px; margin: 0 auto 1rem;">
+                        <select class="form-select">
+                            <option>Niveau 0 - Rez-de-chaussée</option>
+                            <option>Niveau 1 - Premier étage</option>
+                            <option selected>Niveau 2 - Deuxième étage</option>
+                            <option>Niveau 3 - Troisième étage</option>
+                        </select>
+                    </div>
+                    
+                    <div class="floor-grid">
+                        <div class="lot-cell available">A01</div>
+                        <div class="lot-cell occupied">A02</div>
+                        <div class="lot-cell available">A03</div>
+                        <div class="lot-cell available">A04</div>
+                        <div class="lot-cell occupied">A05</div>
+                        <div class="lot-cell available">A06</div>
+                        <div class="lot-cell occupied">A07</div>
+                        <div class="lot-cell available">A08</div>
+                        
+                        <div class="lot-cell occupied">B01</div>
+                        <div class="lot-cell available">B02</div>
+                        <div class="lot-cell occupied">B03</div>
+                        <div class="lot-cell available">B04</div>
+                        <div class="lot-cell available">B05</div>
+                        <div class="lot-cell occupied">B06</div>
+                        <div class="lot-cell available">B07</div>
+                        <div class="lot-cell occupied">B08</div>
+                        
+                        <div class="lot-cell available">C01</div>
+                        <div class="lot-cell available">C02</div>
+                        <div class="lot-cell occupied">C03</div>
+                        <div class="lot-cell available">C04</div>
+                        <div class="lot-cell occupied">C05</div>
+                        <div class="lot-cell available">C06</div>
+                        <div class="lot-cell available">C07</div>
+                        <div class="lot-cell occupied">C08</div>
+                        
+                        <div class="lot-cell occupied">D01</div>
+                        <div class="lot-cell available">D02</div>
+                        <div class="lot-cell available">D03</div>
+                        <div class="lot-cell occupied">D04</div>
+                        <div class="lot-cell available">D05</div>
+                        <div class="lot-cell available">D06</div>
+                        <div class="lot-cell occupied">D07</div>
+                        <div class="lot-cell available">D08</div>
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-box" style="background-color: #d1fae5; border: 2px solid var(--success);"></div>
+                            <span>Disponible</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-box" style="background-color: #fee2e2; border: 2px solid var(--danger);"></div>
+                            <span>Occupé</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-box" style="background-color: var(--primary-color);"></div>
+                            <span>Sélectionné</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Selected Lot Info -->
+            <div class="selected-lot-info">
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">📍 Lot sélectionné : A01</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <div style="opacity: 0.9; font-size: 0.875rem;">Surface</div>
+                        <div style="font-size: 1.25rem; font-weight: 700;">75 m²</div>
+                    </div>
+                    <div>
+                        <div style="opacity: 0.9; font-size: 0.875rem;">Loyer mensuel</div>
+                        <div style="font-size: 1.25rem; font-weight: 700;">2 500 €</div>
+                    </div>
+                    <div>
+                        <div style="opacity: 0.9; font-size: 0.875rem;">Emplacement</div>
+                        <div style="font-size: 1.25rem; font-weight: 700;">Premium</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Assignment Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Informations du Locataire</h2>
+                </div>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="client-type">Type de locataire</label>
+                        <select id="client-type" class="form-select" required>
+                            <option value="">Sélectionner...</option>
+                            <option value="entreprise">Entreprise / Société</option>
+                            <option value="auto-entrepreneur">Auto-entrepreneur</option>
+                            <option value="particulier">Particulier</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="search-client">Rechercher un client existant</label>
+                        <input 
+                            type="text" 
+                            id="search-client" 
+                            class="form-input" 
+                            placeholder="Nom, SIRET ou email du client..."
+                        >
+                        <div class="client-search-results">
+                            <div class="client-result-item">
+                                <div style="font-weight: 600;">Mode & Style SARL</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">SIRET: 123 456 789 00012 - contact@modestyle.fr</div>
+                            </div>
+                            <div class="client-result-item">
+                                <div style="font-weight: 600;">Fashion Boutique SAS</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">SIRET: 987 654 321 00011 - info@fashionboutique.fr</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 1.5rem 0; color: var(--text-secondary);">
+                        ─── OU ───
+                    </div>
+                    
+                    <h3 style="margin-bottom: 1rem;">Nouveau Locataire</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="company-name">Nom de l'entreprise / Enseigne</label>
+                            <input 
+                                type="text" 
+                                id="company-name" 
+                                class="form-input" 
+                                placeholder="Élégance Fashion"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="siret">SIRET</label>
+                            <input 
+                                type="text" 
+                                id="siret" 
+                                class="form-input" 
+                                placeholder="123 456 789 00012"
+                                required
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="legal-form">Forme juridique</label>
+                            <select id="legal-form" class="form-select" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="sarl">SARL</option>
+                                <option value="sas">SAS</option>
+                                <option value="eurl">EURL</option>
+                                <option value="sa">SA</option>
+                                <option value="auto">Auto-entrepreneur</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="activity">Secteur d'activité</label>
+                            <select id="activity" class="form-select" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="mode">Mode & Vêtements</option>
+                                <option value="electronique">Électronique</option>
+                                <option value="alimentation">Alimentation & Restauration</option>
+                                <option value="beaute">Beauté & Bien-être</option>
+                                <option value="maison">Maison & Décoration</option>
+                                <option value="sport">Sport & Loisirs</option>
+                                <option value="culture">Culture & Divertissement</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin: 2rem 0 1rem;">Représentant Légal</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="rep-firstname">Prénom</label>
+                            <input 
+                                type="text" 
+                                id="rep-firstname" 
+                                class="form-input" 
+                                placeholder="Jean"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="rep-lastname">Nom</label>
+                            <input 
+                                type="text" 
+                                id="rep-lastname" 
+                                class="form-input" 
+                                placeholder="Dupont"
+                                required
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="rep-email">Email</label>
+                            <input 
+                                type="email" 
+                                id="rep-email" 
+                                class="form-input" 
+                                placeholder="jean.dupont@entreprise.fr"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="rep-phone">Téléphone</label>
+                            <input 
+                                type="tel" 
+                                id="rep-phone" 
+                                class="form-input" 
+                                placeholder="+33 6 12 34 56 78"
+                                required
+                            >
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin: 2rem 0 1rem;">Conditions du Bail</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="start-date">Date de début</label>
+                            <input 
+                                type="date" 
+                                id="start-date" 
+                                class="form-input"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="duration">Durée du bail</label>
+                            <select id="duration" class="form-select" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="3">3 ans (3/6/9)</option>
+                                <option value="6">6 ans</option>
+                                <option value="9">9 ans</option>
+                                <option value="12">12 ans</option>
+                                <option value="autre">Autre durée</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="monthly-rent">Loyer mensuel (€)</label>
+                            <input 
+                                type="number" 
+                                id="monthly-rent" 
+                                class="form-input" 
+                                value="2500"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="charges">Charges mensuelles (€)</label>
+                            <input 
+                                type="number" 
+                                id="charges" 
+                                class="form-input" 
+                                placeholder="500"
+                                required
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="deposit">Dépôt de garantie (€)</label>
+                            <input 
+                                type="number" 
+                                id="deposit" 
+                                class="form-input" 
+                                placeholder="7500"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="payment-day">Jour de paiement</label>
+                            <select id="payment-day" class="form-select" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="1">1er du mois</option>
+                                <option value="5">5 du mois</option>
+                                <option value="10">10 du mois</option>
+                                <option value="15">15 du mois</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="special-conditions">Conditions particulières</label>
+                        <textarea 
+                            id="special-conditions" 
+                            class="form-textarea" 
+                            placeholder="Indiquez ici toute condition spécifique du bail..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" required>
+                            <span>J'atteste avoir vérifié toutes les informations et documents requis</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Contract Preview -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Récapitulatif du Contrat</h2>
+                </div>
+                
+                <div class="contract-preview">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--primary-color); font-size: 1.5rem;">CONTRAT DE LOCATION COMMERCIALE</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Numéro: #LOC-2026-A01-001</p>
+                    </div>
+                    
+                    <div style="display: grid; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="padding: 1rem; background-color: var(--surface); border-radius: 6px;">
+                            <strong>Bailleur:</strong> Centre Commercial Élégance<br>
+                            SIRET: 999 888 777 00011
+                        </div>
+                        <div style="padding: 1rem; background-color: var(--surface); border-radius: 6px;">
+                            <strong>Locataire:</strong> [À compléter]<br>
+                            SIRET: [À compléter]
+                        </div>
+                        <div style="padding: 1rem; background-color: var(--surface); border-radius: 6px;">
+                            <strong>Local:</strong> Lot A01 - Niveau 2<br>
+                            Surface: 75 m²
+                        </div>
+                        <div style="padding: 1rem; background-color: var(--surface); border-radius: 6px;">
+                            <strong>Conditions financières:</strong><br>
+                            Loyer: 2 500,00 € / mois HT<br>
+                            Charges: [À compléter] € / mois<br>
+                            Dépôt de garantie: [À compléter] €
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); text-align: center;">
+                        Le contrat complet sera généré après validation du formulaire
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="flex gap-2">
+                <button class="btn btn-outline" style="flex: 1;">Annuler</button>
+                <button class="btn btn-secondary" style="flex: 1;">Enregistrer comme brouillon</button>
+                <button class="btn btn-primary" style="flex: 2;">✓ Valider l'attribution</button>
+            </div>
+        </div>
+    </main>

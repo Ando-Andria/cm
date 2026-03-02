@@ -1,0 +1,145 @@
+<!-- ═══════════════════════════════════════════════
+     NAVBAR — navbar.component.html (statique)
+     ═══════════════════════════════════════════════ -->
+
+<nav class="navbar">
+
+  <!-- Logo -->
+  <a class="navbar-brand" href="/">
+    <div class="brand-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">Galeries</span>
+      <span class="brand-sub">du Parc</span>
+    </div>
+  </a>
+
+  <!-- Liens desktop -->
+  <ul class="nav-links">
+    <li>
+      <a class="nav-link" href="/shop-list">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        Boutiques
+      </a>
+    </li>
+    <li>
+      <a class="nav-link" (click)="toggleCategories()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Catégories
+      </a>
+    </li>
+    <app-liste-category *ngIf="showCategories" (close)="showCategories = false" (selectCategory)="handleCategory($event)"></app-liste-category>
+
+ <li>
+  <a class="nav-link" href="#" (click)="openPromotionsModal($event)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+      <line x1="7" y1="7" x2="7.01" y2="7"/>
+    </svg>
+    Promotions
+    <span class="promo-count-badge" *ngIf="promotionsCount > 0">
+      {{ promotionsCount > 99 ? '99+' : promotionsCount }}
+    </span>
+  </a>
+</li>
+
+<!-- Modal Promotions -->
+<div class="modal-overlay" *ngIf="showPromoModal" (click)="closePromotionsModal()">
+  <div class="modal-panel" (click)="$event.stopPropagation()">
+    <app-promotions (close)="closePromotionsModal()"></app-promotions>
+  </div>
+</div>
+
+ <li>
+      <a class="nav-link" (click)="openMallPlan()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+          <line x1="9" y1="3" x2="9" y2="18"/>
+          <line x1="15" y1="6" x2="15" y2="21"/>
+        </svg>
+        Plan du mall
+      </a>
+    </li>
+  </ul>
+
+    <app-mall-plan
+    *ngIf="isMallPlanOpen"
+    (close)="closeMallPlan()">
+  </app-mall-plan>
+
+  <!-- Actions droite -->
+  <div class="nav-actions">
+
+    <button class="action-btn" aria-label="Mes favoris">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+
+  <button class="action-btn" aria-label="Mes commandes" (click)="openOrders()">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+  </button>
+
+  <!-- Overlay -->
+<div class="modal-overlay" *ngIf="showOrdersModal" (click)="closeOrders()">
+
+  <!-- Modal -->
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h2>Mes commandes</h2>
+      <button class="close-btn" (click)="closeOrders()">✕</button>
+    </div>
+    <app-customer-orders></app-customer-orders>
+
+  </div>
+
+</div>
+
+<!-- Bouton pour ouvrir le panier -->
+<button class="action-btn cart-btn" aria-label="Mon panier" (click)="cartModal.open()">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="9" cy="21" r="1"/>
+    <circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+</button>
+
+<!-- Composant modal panier -->
+<app-cart-modal #cartModal
+  [clientId]="clientId">
+</app-cart-modal>
+
+    <div class="avatar">
+      <span class="avatar-initials">JD</span>
+    </div>
+
+    <button class="burger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</nav>
+
+<div class="navbar-spacer"></div>

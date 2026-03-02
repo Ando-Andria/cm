@@ -1,0 +1,36 @@
+<app-shop-navbar></app-shop-navbar>
+<div class="notification-container">
+
+  <h3>
+    🔔 Notifications
+    <span class="badge" *ngIf="unreadCount > 0">
+      {{ unreadCount }}
+    </span>
+  </h3>
+
+  <div *ngIf="notifications.length === 0" class="empty">
+    Aucune notification
+  </div>
+
+  <div
+    *ngFor="let notif of notifications"
+    class="notification-card"
+    [class.unread]="!notif.read"
+  >
+
+    <div class="notif-content">
+      <p>{{ notif.message }}</p>
+      <small>{{ notif.createdAt }}</small>
+    </div>
+
+    <button
+      *ngIf="!notif.read"
+      (click)="markAsRead(notif)"
+      class="mark-btn"
+    >
+      ✔ Marquer comme lu
+    </button>
+
+  </div>
+
+</div>

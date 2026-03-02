@@ -1,0 +1,136 @@
+<!-- ═══════════════════════════════════════════════
+     MODAL PROMOTIONS — promotions.component.html
+     ═══════════════════════════════════════════════ -->
+
+<!-- Backdrop -->
+<div class="promo-backdrop" (click)="closeModal()"></div>
+
+<!-- Fenêtre principale -->
+<div class="promo-modal">
+
+  <!-- ── Header sticky ── -->
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-header-icon">🏷️</div>
+      <div>
+        <h2 class="modal-header-title">Promotions en cours</h2>
+        <p class="modal-header-sub">Offres exclusives · Durée limitée</p>
+      </div>
+    </div>
+    <button class="modal-close" (click)="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── Corps scrollable ── -->
+  <div class="promo-modal-body">
+
+    <!-- Erreur -->
+    <div class="error-msg" *ngIf="errorMessage">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      {{ errorMessage }}
+    </div>
+
+    <!-- Grille promotions -->
+    <div class="promotions-grid" *ngIf="promotions.length> 0">
+      <div
+        class="promotion-card"
+        *ngFor="let promo of promotions; let i = index"
+        [style.animation-delay]="i * 70 + 'ms'"
+      >
+
+        <!-- Badge remise -->
+        <div class="promo-badge">−{{ promo.discountPercent }}%</div>
+
+        <!-- En-tête card -->
+        <div class="promo-card-header">
+          <h3 class="promo-title">{{ promo.title }}</h3>
+          <p class="promo-desc">{{ promo.description }}</p>
+        </div>
+
+        <!-- Prix -->
+        <div class="promo-price-row">
+          <span class="promo-price-original">
+            {{ promo.product?.price }} AR
+          </span>
+          <span class="promo-price-final">
+        <span class="promo-price-final">
+          {{ (promo.product?.price ?? 0) * (1 - (promo.discountPercent ?? 0) / 100) }}
+        </span>
+          </span>
+          <span class="promo-price-currency">AR</span>
+        </div>
+
+        <!-- Description produit -->
+        <div class="promo-product-info">
+          <p class="promo-product-desc">{{ promo.product?.description }}</p>
+        </div>
+
+        <!-- Infos boutique -->
+        <div class="promo-shop-block">
+          <p class="promo-shop-name">🏪 {{ promo.product?.shop?.name }}</p>
+
+          <a class="promo-shop-detail" [href]="'mailto:' + promo.product?.shop?.email">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4
+                       c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,12 2,6"/>
+            </svg>
+            {{ promo.product?.shop?.email }}
+          </a>
+
+          <a class="promo-shop-detail"
+             [href]="promo.product?.shop?.website"
+             target="_blank"
+             rel="noopener"
+             *ngIf="promo.product?.shop?.website">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10
+                       15.3 15.3 0 0 1-4 10
+                       15.3 15.3 0 0 1-4-10
+                       15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            {{ promo.product?.shop?.website }}
+          </a>
+        </div>
+
+        <!-- Footer card -->
+        <div class="promo-card-footer">
+          <div class="promo-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Étage {{ promo.product?.shop?.floor }} · Unité {{ promo.product?.shop?.unitNumber }}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Vide -->
+    <div class="empty-state" *ngIf="!loading && promotions.length === 0">
+      <div class="empty-icon">🏷️</div>
+      <p>Aucune promotion active pour le moment.</p>
+    </div>
+
+  </div>
+  <!-- fin promo-modal-body -->
+
+</div>
+<!-- fin promo-modal -->
+
+

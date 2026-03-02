@@ -1,0 +1,48 @@
+<app-shop-navbar></app-shop-navbar>
+
+<form [formGroup]="promotionForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-header">
+    <h2 class="form-title">✨ Insertion de promotions</h2>
+    <p class="form-subtitle">Créez une nouvelle promotion pour vos produits</p>
+  </div>
+
+  <label>Produit</label>
+  <select formControlName="productId">
+    <option value="">-- Sélectionner --</option>
+    <option *ngFor="let product of products" [value]="product._id">{{ product.name }}</option>
+  </select>
+
+  <label>Titre</label>
+  <input type="text" formControlName="title">
+
+  <label>Description</label>
+  <textarea formControlName="description"></textarea>
+
+  <label>Remise (%)</label>
+  <input type="number" formControlName="discountPercent" min="1" max="100">
+
+  <label>Date de début</label>
+  <input type="date" formControlName="startDate">
+
+  <label>Date de fin</label>
+  <input type="date" formControlName="endDate">
+
+  <button type="button" (click)="showConfirmModal()" [disabled]="promotionForm.invalid || loading">
+      Enregistrer la promotion
+    </button>
+</form>
+
+<div class="modal-backdrop" *ngIf="confirming">
+  <div class="modal">
+    <p>⚠️ Cette promotion sera appliquée au produit. Confirmer ?</p>
+    <div class="modal-actions">
+      <button (click)="confirmSave()">Oui</button>
+      <button (click)="cancelSave()">Annuler</button>
+    </div>
+  </div>
+</div>
+
+
+<app-list-promotions [promotions]="promotions" ></app-list-promotions>
+<app-footer></app-footer>

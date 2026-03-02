@@ -1,0 +1,5 @@
+<button class="favorite-btn" (click)="toggle()" type="button" [class.active]="isFavorite">
+  <span *ngIf="!isFavorite">🤍</span>
+  <span *ngIf="isFavorite">❤️</span>
+</button>
+

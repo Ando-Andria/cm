@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="purchase-container">
+  <div class="form-wrapper">
+
+    <div class="form-header">
+      <h1 class="form-title">{{ modeEdition ? 'Modifier Contrat' : 'Nouveau Contrat' }}</h1>
+    </div>
+
+    <div *ngIf="showSuccess" class="success-message">
+      {{ modeEdition ? 'Contrat modifié ✅' : 'Contrat créé ✅' }}
+    </div>
+    <div *ngIf="errorMessage" class="field-error">{{ errorMessage }}</div>
+
+    <form [formGroup]="contratForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Boutique <span class="required-mark">*</span></label>
+          <select formControlName="boutiqueId" class="field-input">
+            <option value="">Sélectionner une boutique</option>
+            <option *ngFor="let b of boutiques" [value]="b._id">{{ b.nom }}</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Lot <span class="required-mark">*</span></label>
+          <select formControlName="lotId" class="field-input">
+            <option value="">Sélectionner un lot</option>
+            <option *ngFor="let l of lots" [value]="l._id">{{ l.numero }}</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Date Début <span class="required-mark">*</span></label>
+          <input type="date" formControlName="dateDebut" class="field-input">
+        </div>
+
+        <div class="form-field">
+          <label>Date Fin <span class="required-mark">*</span></label>
+          <input type="date" formControlName="dateFin" class="field-input">
+        </div>
+      </div>
+<div class="form-field">
+  <label>Date Paiement</label>
+  <input type="number" formControlName="datePaiement" class="field-input">
+</div>
+
+<div class="form-field">
+  <label>Date Envoi</label>
+  <input type="number" formControlName="dateEnvoie" class="field-input">
+</div>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="contratForm.invalid || loading">
+          {{ loading ? (modeEdition ? 'Modification...' : 'Création...') : (modeEdition ? 'Modifier' : 'Créer') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+
+<app-header></app-header>
+
+<main class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">Gestion des Lots Commerciaux</h1>
+    <p class="page-subtitle">Vue d'ensemble et gestion de tous les lots du centre commercial</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="lots-stats">
+    <div class="stat-card-lot">
+      <div class="stat-label">Total Lots</div>
+      <div class="stat-value">{{ totalLots }}</div>
+    </div>
+    <div class="stat-card-lot available">
+      <div class="stat-label">Disponibles</div>
+      <div class="stat-value">{{ availableLots }}</div>
+    </div>
+    <div class="stat-card-lot occupied">
+      <div class="stat-label">Occupés</div>
+      <div class="stat-value">{{ occupiedLots }}</div>
+    </div>
+  </div>
+
+  <!-- Recherche et Actions -->
+  <div class="card">
+    <div class="flex-between mb-3">
+      <div class="search-bar" style="flex: 1; max-width: 500px; margin: 0;">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Rechercher par numéro de lot"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        >
+      </div>
+      <div class="flex gap-2">
+        <a href="/lots/add" class="btn btn-primary">➕ Ajouter un lot</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des lots -->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Lot</th>
+          <th>Niveau</th>
+          <th>Surface</th>
+          <th>Statut</th>
+          <th>Loyer mensuel</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lot of filteredLots">
+          <td><strong>{{ lot.numero }}</strong></td>
+          <td>{{ lot.zone }}</td>
+          <td>{{ lot.surface }} m²</td>
+          <td>
+            <span class="lot-status-dot" [ngClass]="{
+              'available': lot.statut==='LIBRE',
+              'occupied': lot.statut==='OCCUPE',
+              'closed': lot.statut==='FERME'
+            }"></span>
+            <span class="badge" [ngClass]="{
+              'badge-success': lot.statut==='LIBRE',
+              'badge-warning': lot.statut==='OCCUPE',
+              'badge-danger': lot.statut==='FERME'
+            }">
+              {{ lot.statut==='LIBRE'?'Disponible':lot.statut==='OCCUPE'?'Occupé':'Fermé' }}
+            </span>
+          </td>
+          <td>{{ lot.prix | number:'1.0-0' }} Ariary</td>
+          <td>
+            <div class="actions">
+         <button class="btn btn-primary" 
+        *ngIf="lot._id" 
+        (click)="goToEditLot(lot._id)">
+  Modifier
+</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</main>

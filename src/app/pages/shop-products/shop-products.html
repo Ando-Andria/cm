@@ -1,0 +1,124 @@
+<app-shop-navbar></app-shop-navbar>
+<div class="shop-products">
+
+  <h2>Produits de la boutique</h2>
+
+  <div *ngIf="loading" class="loading">
+    Chargement des produits...
+  </div>
+
+  <div *ngIf="!loading && products.length === 0" class="empty">
+    Aucun produit trouvé.
+  </div>
+
+  <div class="products-grid" *ngIf="!loading && products.length > 0">
+
+    <div class="product-card" *ngFor="let product of products">
+
+      <!-- IMAGE -->
+      <div class="image-container">
+        <img
+          *ngIf="product.imageUrl"
+          [src]="product.imageUrl"
+          alt="{{ product.name }}"
+        />
+        <div *ngIf="!product.imageUrl" class="no-image">
+          Image indisponible
+        </div>
+      </div>
+
+      <!-- INFOS -->
+      <div class="product-info">
+
+        <h3>{{ product.name }}</h3>
+
+        <p class="description">
+          {{ product.description || 'Aucune description' }}
+        </p>
+
+        <p class="price">
+          {{ product.price | number }} Ar
+        </p>
+
+        <p class="category">
+          Catégorie : {{ product.categoryId?.name }}
+        </p>
+
+        <p class="status"
+           [ngClass]="{
+             'active': product.status === 'active',
+             'inactive': product.status !== 'active'
+           }">
+          Statut : {{ product.status }}
+        </p>
+
+          <p class="quantite_stock">
+          Nombre en stock  : {{ product.stock }}
+        </p>
+
+        <!-- STOCK EN TEMPS RÉEL -->
+        <p class="stock"
+           [ngClass]="{
+             'low-stock': product.isLowStock,
+             'normal-stock': !product.isLowStock
+           }">
+          Stock :
+          <span *ngIf="product.isLowStock">
+            ⚠️ Stock faible
+          </span>
+          <span *ngIf="!product.isLowStock">
+            Disponible
+          </span>
+        </p>
+
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <button class="btn edit" (click)="editProduct(product)">
+          Modifier
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="modal-backdrop" *ngIf="isEditModalOpen"></div>
+
+<div class="modal" *ngIf="isEditModalOpen">
+
+  <h3>Modifier produit</h3>
+
+  <form (ngSubmit)="submitUpdate()">
+
+    <label>Prix</label>
+    <input type="number" [(ngModel)]="selectedProduct!.price" name="price" required>
+
+    <label>Stock</label>
+    <input type="number" [(ngModel)]="selectedProduct!.stock" name="stock" required>
+
+    <label>Status</label>
+    <select [(ngModel)]="selectedProduct!.status" name="status" class="status-select">
+      <!-- Placeholder -->
+      <option value="" disabled [hidden]="selectedProduct?.status !== ''">
+        ------ Choisir une option -------
+      </option>
+
+      <!-- Options réelles -->
+      <option value="available">Disponible</option>
+      <option value="inactive">Inactif</option>
+    </select>
+
+    <div class="modal-actions">
+      <button type="submit">Enregistrer</button>
+      <button type="button" (click)="closeModal()">Annuler</button>
+    </div>
+
+  </form>
+
+</div>
+<app-footer></app-footer>

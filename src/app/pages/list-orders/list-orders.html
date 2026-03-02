@@ -1,0 +1,95 @@
+<app-shop-navbar></app-shop-navbar>
+
+<h3>Commandes de la boutique</h3>
+
+<table *ngIf="!loading; else loadingTpl">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Produits</th>
+      <th>Quantité</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>Status payement</th>
+      <th>Status de livraison</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.customerId?.name || 'Anonyme' }} <br>{{ order.customerId?.email || 'Anonyme' }} <br>{{ order.customerId?.phone || 'Anonyme' }}</td>
+      <td>
+       <ul>
+        <li *ngFor="let p of order.products">
+          <strong>{{ p.productId.name }}</strong> :
+          <strong>{{ p.quantity }}</strong>
+        </li>
+      </ul>
+      </td>
+      <td>{{ order.totalQuantity }}</td>
+      <td>{{ order.totalAmount }}</td>
+     <td>
+          <span [ngClass]="'status-' + order.status">
+            {{ order.status }}
+          </span>
+        </td>
+        <td>
+          <span [ngClass]="'payment-' + order.paymentStatus">
+            {{ order.paymentStatus }}
+          </span>
+        </td>
+        <td>
+          <span [ngClass]="'delivery-' + order.deliveryStatus">
+            {{ order.deliveryStatus }}
+          </span>
+        </td>
+
+        <td>
+       <button
+        *ngIf="order.status === 'pending'"
+        (click)="validateOrder(order._id)"
+        class="btn btn-success">
+        ✅ Valider
+      </button>
+
+
+      </td>
+
+      <td>
+    <button
+      *ngIf="order.status === 'validated' && order.paymentStatus !== 'paid'"
+      (click)="markAsPaid(order._id)"
+      class="btn btn-success">
+      ✅ Marquer comme payé
+    </button>
+
+</td>
+<td>
+  <span *ngIf="order.paymentStatus === 'paid'" class="paid-badge">
+    ✔ Payé
+  </span>
+</td>
+
+<td>
+    <button
+      *ngIf="order.paymentStatus === 'paid' && order.deliveryStatus !== 'delivered'"
+      (click)="markAsDelivered(order._id)"
+      class="btn-delivery">
+      🚚 Commencer la livraison
+    </button>
+
+
+  <span *ngIf="order.deliveryStatus === 'delivered'" class="delivered-badge">
+    ✔ Livré
+  </span>
+</td>
+
+
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #loadingTpl>
+  <p>Chargement des commandes...</p>
+</ng-template>
+<app-footer></app-footer>

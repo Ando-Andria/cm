@@ -1,0 +1,13 @@
+<button
+  class="btn-cart"
+  (click)="add()"
+  [disabled]="loading || product?.status !== 'available'"
+>
+  <ng-container *ngIf="!loading; else loadingTpl">
+    🛒 Ajouter
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    ⏳ Ajout...
+  </ng-template>
+</button>

@@ -1,0 +1,24 @@
+.status-badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-actif {
+  background-color: #28a745; /* vert */
+}
+
+.status-expire {
+  background-color: #dc3545; /* rouge */
+}
+.filter-input {
+  padding: 5px 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+}

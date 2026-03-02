@@ -1,0 +1,106 @@
+/* ───────────────────────────────────────────
+   🛒  Bouton Ajouter au Panier
+   Thème : Blanc & Bleu Azure
+─────────────────────────────────────────── */
+
+.btn-cart {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;   /* réduit */
+  min-width: 110px;          /* réduit */
+
+  /* Typographie */
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  /* Couleurs */
+  color: #ffffff;
+  background: linear-gradient(135deg, #2196f3 0%, #00bcd4 100%);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+
+  /* Ombre */
+  box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3);
+
+  /* Transition */
+  cursor: pointer;
+  transition:
+    transform      0.2s ease,
+    box-shadow     0.2s ease,
+    background     0.3s ease,
+    border-color   0.2s ease,
+    opacity        0.2s ease;
+
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Reflet subtil ── */
+.btn-cart::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0)    30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0)    70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+/* ── Hover ── */
+.btn-cart:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1976d2 0%, #0097a7 100%);
+  border-color: rgba(0, 188, 212, 0.4);
+  box-shadow: 0 5px 16px rgba(33, 150, 243, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-cart:hover:not(:disabled)::before {
+  transform: translateX(100%);
+}
+
+/* ── Clic ── */
+.btn-cart:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(33, 150, 243, 0.25);
+}
+
+/* ── Focus clavier ── */
+.btn-cart:focus-visible {
+  border-color: #00bcd4;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3);
+}
+
+/* ── Désactivé ── */
+.btn-cart:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #b0bec5;
+  box-shadow: none;
+  transform: none;
+  border-color: transparent;
+}
+
+.btn-cart:disabled::before {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .btn-cart {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.55rem 1rem;
+    min-width: unset; /* enlève la contrainte en mobile */
+  }
+}

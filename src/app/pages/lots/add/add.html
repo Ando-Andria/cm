@@ -1,0 +1,99 @@
+
+<app-header></app-header>
+
+<div class="purchase-container">
+  <div class="form-wrapper">
+
+    <!-- TITRE DYNAMIQUE -->
+    <div class="form-header">
+      <h1 class="form-title">
+        {{ modeEdition ? 'Modifier le Lot' : 'Nouveau Lot' }}
+      </h1>
+      <p class="form-subtitle">
+        {{ modeEdition 
+          ? 'Modifier les informations du lot' 
+          : 'Créer un nouveau lot dans le centre commercial' 
+        }}
+      </p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div *ngIf="showSuccess" class="success-message">
+      {{ modeEdition ? 'Lot modifié avec succès ✅' : 'Lot créé avec succès ✅' }}
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage" class="field-error">
+      {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="lotForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-grid">
+
+        <!-- Numéro -->
+        <div class="form-field">
+          <label class="field-label">
+            Numéro <span class="required-mark">*</span>
+          </label>
+          <input type="text" formControlName="numero" class="field-input" placeholder="Ex: L-001" [value]="lotForm.get('numero')?.value">
+          <span *ngIf="lotForm.get('numero')?.invalid && lotForm.get('numero')?.touched" class="field-error">
+            Numéro obligatoire
+          </span>
+        </div>
+
+        <!-- Surface -->
+        <div class="form-field">
+          <label class="field-label">
+            Surface (m²) <span class="required-mark">*</span>
+          </label>
+          <input type="number" formControlName="surface" class="field-input" min="1" [value]="lotForm.get('surface')?.value">
+          <span *ngIf="lotForm.get('surface')?.invalid && lotForm.get('surface')?.touched" class="field-error">
+            Surface invalide
+          </span>
+        </div>
+
+        <!-- Zone -->
+        <div class="form-field">
+          <label class="field-label">
+            Zone <span class="required-mark">*</span>
+          </label>
+          <select formControlName="zone" class="field-input" [value]="lotForm.get('zone')?.value">
+            <option value="">Sélectionner une zone</option>
+            <option value="RDC">RDC</option>
+            <option value="ETAGE">Étage</option>
+          </select>
+          <span *ngIf="lotForm.get('zone')?.invalid && lotForm.get('zone')?.touched" class="field-error">
+            Zone obligatoire
+          </span>
+        </div>
+
+        <!-- Prix -->
+        <div class="form-field">
+          <label class="field-label">
+            Prix <span class="required-mark">*</span>
+          </label>
+          <div class="input-group">
+            <input type="number" formControlName="prix" min="0" step="0.01" class="field-input" [value]="lotForm.get('prix')?.value">
+            <span class="input-addon">Ar</span>
+          </div>
+          <span *ngIf="lotForm.get('prix')?.invalid && lotForm.get('prix')?.touched" class="field-error">
+            Prix invalide
+          </span>
+        </div>
+
+      </div>
+
+      <!-- BOUTON DYNAMIQUE -->
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="lotForm.invalid || loading">
+          {{ loading 
+            ? (modeEdition ? 'Modification...' : 'Création...') 
+            : (modeEdition ? 'Modifier le lot' : 'Créer le lot') 
+          }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

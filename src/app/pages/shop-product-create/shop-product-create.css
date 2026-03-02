@@ -1,0 +1,158 @@
+/* =====================================================
+   FORMULAIRE AJOUT PRODUIT – Style discret & élégant
+   Palette : gris / anthracite / danger léger / blanc cassé
+   ===================================================== */
+
+.create-product-form {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ebedf2;
+  padding: 32px 28px;
+  max-width: 680px;
+  margin: 32px auto;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.create-product-form h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: -0.3px;
+}
+
+/* ── Labels ── */
+.create-product-form label {
+  display: block;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0 0 8px;
+}
+
+/* ── Inputs & Textarea ── */
+.create-product-form input[type="text"],
+.create-product-form input[type="number"],
+.create-product-form textarea,
+.create-product-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.97rem;
+  background: white;
+  color: #111827;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  font-family: inherit;
+}
+
+.create-product-form textarea {
+  min-height: 92px;
+  resize: vertical;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.create-product-form input:focus,
+.create-product-form textarea:focus,
+.create-product-form select:focus {
+  outline: none;
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.10);
+}
+
+/* Sélecteur stylisé */
+.create-product-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* ── Bouton principal "Créer le produit" ── */
+.create-product-form button[type="submit"] {
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  margin: 32px auto 0;
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: white;
+  background-color: #1f2937;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+  box-shadow: 0 3px 12px rgba(31, 41, 55, 0.16);
+}
+
+.create-product-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #111827;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(31, 41, 55, 0.24);
+}
+
+.create-product-form button[type="submit"]:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(31, 41, 55, 0.18);
+}
+
+.create-product-form button[type="submit"]:disabled,
+.create-product-form button[type="submit"][disabled] {
+  background-color: #6b7280;
+  color: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── État loading (optionnel – si tu ajoutes [class.loading] sur le bouton) ── */
+.create-product-form button.loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.create-product-form button.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .create-product-form {
+    padding: 24px 20px;
+    margin: 24px 12px;
+  }
+
+  .create-product-form h2 {
+    font-size: 1.32rem;
+  }
+
+  .create-product-form button[type="submit"] {
+    max-width: none;
+  }
+}

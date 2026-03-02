@@ -1,0 +1,180 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div class="dash-title">
+      <div class="icon-wrap"><i class="fa-solid fa-gauge-high"></i></div>
+      <div>
+        <h2>Dashboard Boutique</h2>
+        <span>Vue d'ensemble de votre activité</span>
+      </div>
+    </div>
+    <div class="dash-date">
+      <i class="fa-regular fa-calendar-days"></i>
+      {{ today}}
+    </div>
+  </div>
+
+  <!-- Section KPI -->
+  <div class="section-label">
+    <i class="fa-solid fa-bolt"></i> Indicateurs clés du jour
+  </div>
+
+  <div class="cards">
+
+    <div class="card card--ca">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-euro-sign"></i></div>
+        <div class="card-trend"><i class="fa-solid fa-arrow-trend-up"></i> +12%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-label">CA du jour</div>
+        <div class="card-value">{{ caDuJour }} Ar</div>
+      </div>
+    </div>
+
+    <div class="card card--ventes">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+        <div class="card-trend"><i class="fa-solid fa-arrow-trend-up"></i> +8%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Ventes du jour</div>
+        <div class="card-value">{{ ventesDuJour }}</div>
+      </div>
+    </div>
+
+    <div class="card card--commandes">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div class="card-trend"><i class="fa-solid fa-minus"></i> Stable</div>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Commandes en attente</div>
+        <div class="card-value">{{ commandesEnAttente }}</div>
+      </div>
+    </div>
+
+    <div class="card card--stock">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div class="card-trend"><i class="fa-solid fa-arrow-trend-up"></i> OK</div>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Produits en stock</div>
+        <div class="card-value">{{ produitsEnStock }}</div>
+      </div>
+    </div>
+
+    <div class="card card--alerte">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="card-trend"><i class="fa-solid fa-arrow-trend-down"></i> Urgent</div>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Stock faible</div>
+        <div class="card-value">{{ stockFaible }}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Section tableaux -->
+  <div class="section-label">
+    <i class="fa-solid fa-table-cells-large"></i> Analyses détaillées
+  </div>
+
+  <div class="tables-grid">
+
+    <!-- Stock par catégorie -->
+    <div class="table-card table-card--cat">
+      <div class="table-header">
+        <div class="table-title">
+          <i class="fa-solid fa-chart-pie"></i>
+          Stock par catégorie
+        </div>
+        <span class="badge badge--blue">Inventaire</span>
+      </div>
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of stockParCategorie">
+            <td>
+              <i class="fa-solid fa-tag"></i>
+              {{ s._id }}
+            </td>
+            <td><strong>{{ s.total }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top 3 articles -->
+    <div class="table-card table-card--articles">
+      <div class="table-header">
+        <div class="table-title">
+          <i class="fa-solid fa-fire"></i>
+          Top 3 Articles
+        </div>
+        <span class="badge badge--green">Best-sellers</span>
+      </div>
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th>Rang</th>
+            <th>Article</th>
+            <th>Vendus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of topArticles; let i = index">
+            <td>
+              <span class="rank">{{ i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉' }}</span>
+            </td>
+            <td>{{ a.name }}</td>
+            <td><span class="pill pill--green">{{ a.totalQuantity }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top 3 clients -->
+    <div class="table-card table-card--clients">
+      <div class="table-header">
+        <div class="table-title">
+          <i class="fa-solid fa-crown"></i>
+          Top 3 Clients
+        </div>
+        <span class="badge badge--gold">VIP</span>
+      </div>
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Contact</th>
+            <th>Total dépensé</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of topClients">
+            <td>
+              <div class="client-info">
+                <div class="client-avatar">{{ c.name.charAt(0) }}</div>
+                <span class="client-name">{{ c.name }}</span>
+              </div>
+            </td>
+            <td class="td-muted">{{ c.contact }}</td>
+            <td><span class="pill pill--orange">{{ c.totalSpent }} Ar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>

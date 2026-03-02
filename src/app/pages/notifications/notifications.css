@@ -1,0 +1,158 @@
+/* ================================================
+   NOTIFICATIONS — Élégant • Blanc / Gris • 2025
+   ================================================ */
+
+/* ── Conteneur principal ── */
+.notification-container {
+  max-width: 620px;
+  margin: 48px auto;
+  padding: 0 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ── Titre ── */
+.notification-container h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.3px;
+  margin-bottom: 24px;
+}
+
+/* Badge compteur non lus */
+.notification-container h3 .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  background: #111827;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+/* ── État vide ── */
+.empty {
+  padding: 56px 24px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.empty::before {
+  content: '🔕';
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  opacity: 0.4;
+}
+
+/* ── Liste des cards ── */
+.notification-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+
+.notification-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Non lue : barre colorée à gauche ── */
+.notification-card.unread {
+  border-left: 3px solid #111827;
+  padding-left: 17px;
+  background: #fafafa;
+}
+
+/* ── Contenu texte ── */
+.notif-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #1f2937;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.notification-card.unread .notif-content p {
+  font-weight: 600;
+  color: #111827;
+}
+
+.notif-content small {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  letter-spacing: 0.1px;
+}
+
+/* ── Bouton Marquer comme lu ── */
+.mark-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mark-btn:hover {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+/* ── Responsive ── */
+@media (max-width: 540px) {
+  .notification-container {
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  .notification-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .mark-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

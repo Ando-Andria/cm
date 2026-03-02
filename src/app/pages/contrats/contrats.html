@@ -1,0 +1,83 @@
+<app-header></app-header>
+
+<main class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">Gestion des Contrats</h1>
+    <p class="page-subtitle">Liste et gestion des contrats des boutiques</p>
+  </div>
+
+  <div class="card">
+    <div class="flex-between mb-3">
+      <div class="search-bar" style="flex: 1; max-width: 500px;">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Rechercher par boutique ou lot"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        >
+      </div>
+      <div class="flex gap-2">
+        <a href="/contrats/add" class="btn btn-primary">➕ Ajouter un contrat</a>
+      </div>
+    </div>
+  </div>
+<div class="card mb-3">
+  <div class="flex gap-2 flex-wrap">
+    <input type="text" placeholder="Boutique" [(ngModel)]="filterBoutique" (input)="applyFilters()" class="filter-input">
+    <input type="text" placeholder="Lot" [(ngModel)]="filterLot" (input)="applyFilters()" class="filter-input">
+    <input type="date" placeholder="Date début" [(ngModel)]="filterDateDebut" (change)="applyFilters()" class="filter-input">
+    <input type="date" placeholder="Date fin" [(ngModel)]="filterDateFin" (change)="applyFilters()" class="filter-input">
+    <select [(ngModel)]="filterStatut" (change)="applyFilters()" class="filter-input">
+      <option value="">Tous les statuts</option>
+      <option value="ACTIF">ACTIF</option>
+      <option value="EXPIRE">EXPIRE</option>
+    </select>
+  </div>
+</div>
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Boutique</th>
+          <th>Lot</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Loyer Mensuel</th>
+          <th>Statut</th>
+          <th>Date Paiement</th>
+<th>Date Envoi</th>
+          <th>Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of filteredContrats">
+          <td>{{ typeof c.boutiqueId !== 'string' ? c.boutiqueId.nom : '-' }}</td>
+<td>{{ typeof c.lotId !== 'string' ? c.lotId.numero : '-' }}</td>
+
+<td>{{ c.dateDebut | date:'dd/MM/yyyy' }}</td>
+<td>{{ c.dateFin | date:'dd/MM/yyyy' }}</td>
+          <td>{{ c.loyerMensuel | number:'1.0-0' }} Ariary</td>
+          <td>
+  <span 
+    class="status-badge" 
+    [ngClass]="{
+      'status-actif': c.statut === 'ACTIF',
+      'status-expire': c.statut === 'EXPIRE'
+    }">
+    {{ c.statut || 'INACTIF' }}
+  </span>
+</td>
+
+<td>{{ c.datePaiement  }}</td>
+<td>{{ c.dateEnvoie }}</td>
+<td>
+  <button class="btn btn-primary" (click)="goToEditContrat(c._id!)">Modifier</button>
+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

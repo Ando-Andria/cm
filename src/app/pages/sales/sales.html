@@ -1,0 +1,43 @@
+<app-shop-navbar></app-shop-navbar>
+<form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
+
+  <!-- Client -->
+  <label>Client</label>
+  <select formControlName="customerId">
+    <option value="">-- Client anonyme --</option>
+    <option *ngFor="let customer of customers" [value]="customer._id">{{ customer.name }}</option>
+  </select>
+
+  <!-- Méthode de paiement -->
+  <label>Méthode de paiement</label>
+  <select formControlName="paymentMethod">
+    <option value="Cash">Cash</option>
+    <option value="Card">Card</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <!-- Liste des produits -->
+<div formArrayName="products">
+  <div *ngFor="let p of productsArray.controls; let i = index" [formGroupName]="i" class="product-group">
+
+    <label>Produit</label>
+    <select formControlName="productId">
+      <option value="">-- Sélectionner --</option>
+      <option *ngFor="let product of products" [value]="product._id">{{ product.name }}</option>
+    </select>
+
+    <input type="number" formControlName="quantity" min="1">
+
+    <button type="button" (click)="removeProduct(i)" [disabled]="productsArray.length === 1" class="remove-btn">Supprimer</button>
+  </div>
+</div>
+
+  <button type="button" (click)="addProduct()" class="add-product-btn">Ajouter un produit</button>
+ <br>
+  <button type="submit" [disabled]="saleForm.invalid || loading" class="submit-btn">
+    {{ loading ? 'Enregistrement...' : 'Enregistrer la vente' }}
+  </button>
+</form>
+
+<br><br>
+<app-liste-ventes></app-liste-ventes>

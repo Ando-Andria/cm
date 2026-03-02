@@ -1,0 +1,42 @@
+<app-shop-navbar></app-shop-navbar>
+<div class="create-product-form">
+
+  <h2>Ajouter un nouveau produit</h2>
+
+  <form (ngSubmit)="submitForm()">
+
+    <label>Nom</label>
+    <input type="text" [(ngModel)]="name" name="name" required>
+
+    <label>Description</label>
+    <textarea [(ngModel)]="description" name="description"></textarea>
+
+    <label>Prix</label>
+    <input type="number" [(ngModel)]="price" name="price" required>
+
+    <label>Stock</label>
+    <input type="number" [(ngModel)]="stock" name="stock">
+
+    <label>Status</label>
+    <select [(ngModel)]="status" name="status">
+      <option value="available">Disponible</option>
+      <option value="inactive">Inactif</option>
+      <option value="sold_out">Épuisé</option>
+      <option value="promo">Promo</option>
+      <option value="out_of_stock">Rupture</option>
+    </select>
+
+    <label>Catégorie</label>
+    <select [(ngModel)]="categoryId" name="categoryId" required>
+      <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+    </select>
+
+    <label>Image URL</label>
+    <input type="text" [(ngModel)]="imageUrl" name="imageUrl" placeholder="URL image">
+
+    <button type="submit" [disabled]="loading">Créer le produit</button>
+
+  </form>
+
+</div>
+<app-footer></app-footer>

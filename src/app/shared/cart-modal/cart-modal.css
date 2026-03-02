@@ -1,0 +1,443 @@
+/* ═══════════════════════════════════════════════
+   🛒  Modal Panier — Thème Blanc & Bleu Azure
+   Position fixed couvrant toute la page
+═══════════════════════════════════════════════ */
+
+/* ── Backdrop ── */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* dvh tient compte des barres du navigateur, vh comme fallback */
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: rgba(10, 40, 80, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9998;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Modal container ── */
+.cart-modal {
+  position: fixed;
+  /* On décale légèrement vers le bas pour sortir des barres nav */
+  top: 50dvh; /* dvh = hauteur visible hors barres nav du navigateur */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  width: 92%;
+  max-width: 500px;
+  max-height: 80vh;    /* fallback navigateurs anciens */
+  max-height: 80dvh;   /* hauteur visible réelle, sans les barres nav */
+  /* Padding pour ne pas coller aux bords des encoches */
+  padding-bottom: env(safe-area-inset-bottom);
+
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(33, 150, 243, 0.15);
+  box-shadow:
+    0 24px 64px rgba(10, 40, 80, 0.22),
+    0 4px 16px rgba(33, 150, 243, 0.12);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  animation: slideUp 0.25s ease;
+}
+
+/* ── Header ── */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  background: linear-gradient(135deg, #2196f3 0%, #00bcd4 100%);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.22);
+  border: none;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.38);
+  transform: scale(1.12);
+}
+
+/* ── Body ── */
+.modal-body {
+  padding: 1rem 1.1rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.modal-body::-webkit-scrollbar { width: 5px; }
+.modal-body::-webkit-scrollbar-track { background: #f1f5f9; }
+.modal-body::-webkit-scrollbar-thumb {
+  background: #90caf9;
+  border-radius: 4px;
+}
+
+/* ── Panier vide ── */
+.modal-body > div > p {
+  text-align: center;
+  color: #90a4ae;
+  font-size: 0.88rem;
+  padding: 2rem 0;
+}
+
+/* ── Loading ── */
+.modal-body p {
+  text-align: center;
+  color: #64b5f6;
+  font-size: 0.86rem;
+  padding: 1.5rem 0;
+  animation: pulse-opacity 1.2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════
+   Card par boutique
+══════════════════════════════ */
+.shop-cart {
+  border: 1.5px solid rgba(33, 150, 243, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8fbff;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.06);
+}
+
+/* Nom de la boutique */
+.shop-cart h4 {
+  margin: 0;
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1565c0;
+  background: linear-gradient(90deg, rgba(33, 150, 243, 0.13), rgba(0, 188, 212, 0.05));
+  border-bottom: 1px solid rgba(33, 150, 243, 0.15);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Liste produits ── */
+.shop-cart ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.shop-cart ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem 0.4rem;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.shop-cart ul li:hover {
+  background: rgba(33, 150, 243, 0.05);
+}
+
+.shop-cart ul li + li {
+  border-top: 1px dashed rgba(33, 150, 243, 0.15);
+}
+
+/* Ligne principale : image + nom + prix */
+.product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+/* ── Infos produit ── */
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.product-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  flex-shrink: 0;
+}
+
+.product-info span {
+  font-size: 0.83rem;
+  color: #37474f;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prix du produit (li > span direct) */
+.shop-cart ul li > span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #0288d1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   Contrôles quantité
+══════════════════════════════ */
+.product-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+/* Boutons + et - */
+.product-quantity-controls button:not(.remove-btn) {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(33, 150, 243, 0.35);
+  background: #ffffff;
+  color: #1976d2;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  line-height: 1;
+}
+
+.product-quantity-controls button:not(.remove-btn):hover {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  transform: scale(1.08);
+}
+
+.product-quantity-controls button:not(.remove-btn):active {
+  transform: scale(0.95);
+}
+
+/* Quantité affichée */
+.product-quantity-controls > span {
+  min-width: 22px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1565c0;
+}
+
+/* Bouton Supprimer */
+.remove-btn {
+  margin-left: auto;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1.5px solid rgba(229, 57, 53, 0.35);
+  background: #fff5f5;
+  color: #e53935;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.remove-btn:hover {
+  background: #ffebee;
+  border-color: #e53935;
+  transform: scale(1.04);
+}
+
+.remove-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── Total boutique ── */
+.shop-total {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1976d2;
+  text-align: right;
+  background: rgba(33, 150, 243, 0.08);
+  border-top: 1px solid rgba(33, 150, 243, 0.15);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, -47%); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .cart-modal {
+    width: 96%;
+    max-height: 88vh;
+    border-radius: 14px;
+  }
+
+  .modal-header h3 { font-size: 0.9rem; }
+  .product-thumb { width: 32px; height: 32px; }
+  .remove-btn { font-size: 0.7rem; padding: 0.22rem 0.5rem; }
+}
+
+/* ═══════════════════════════════════════
+   ✅  Bouton Passer la commande
+   Thème : Blanc & Bleu Azure
+═══════════════════════════════════════ */
+
+.checkout-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.55rem 1.2rem;
+
+  /* Typo */
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  /* Couleurs — dégradé azure avec accent cyan */
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e88e5 0%, #00acc1 100%);
+  border: none;
+  border-radius: 0 0 10px 10px; /* s'arrondit en bas de la card boutique */
+
+  /* Ombre */
+  box-shadow: 0 3px 10px rgba(30, 136, 229, 0.3);
+
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    background  0.25s ease,
+    box-shadow  0.2s ease,
+    transform   0.15s ease;
+}
+
+/* ── Reflet brillant ── */
+.checkout-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0)    25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0)    75%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+/* ── Icône coche ── */
+.checkout-btn::after {
+  content: '✓';
+  margin-left: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 900;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+/* ── Hover ── */
+.checkout-btn:hover {
+  background: linear-gradient(135deg, #1565c0 0%, #00838f 100%);
+  box-shadow: 0 5px 18px rgba(30, 136, 229, 0.38);
+  transform: translateY(-1px);
+}
+
+.checkout-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.checkout-btn:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Clic ── */
+.checkout-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(30, 136, 229, 0.25);
+}
+
+/* ── Focus clavier ── */
+.checkout-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(0, 188, 212, 0.35),
+    0 3px 10px rgba(30, 136, 229, 0.3);
+}
+
+/* ── Désactivé ── */
+.checkout-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #b0bec5;
+  box-shadow: none;
+  transform: none;
+}
+
+.checkout-btn:disabled::before,
+.checkout-btn:disabled::after {
+  display: none;
+}

@@ -1,0 +1,41 @@
+<h3>Ventes de la boutique</h3>
+
+<ng-template #loadingTpl>
+  <p>Chargement des ventes...</p>
+</ng-template>
+
+<ng-template #emptyTpl>
+  <p>Aucune vente pour le moment.</p>
+</ng-template>
+
+<table *ngIf="!loading && sales.length > 0; else loadingOrEmpty">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Client</th>
+      <th>Produits</th>
+      <th>Méthode de paiement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sale of sales">
+      <td>{{ formatDate(sale.date) }}</td>
+      <td>{{ sale.customerId?.name || 'Anonyme' }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let p of sale.products">
+            {{ p.productId?.name || 'Produit inconnu' }} x {{ p.quantity }}
+          </li>
+        </ul>
+      </td>
+      <td>{{ sale.paymentMethod }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #loadingOrEmpty>
+  <ng-container *ngIf="loading; else emptyTpl">
+    <p>Chargement des ventes...</p>
+  </ng-container>
+</ng-template>
+<app-footer></app-footer>

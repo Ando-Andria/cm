@@ -1,0 +1,27 @@
+<h3>Achats de la boutique</h3>
+
+<table *ngIf="!loading; else loadingTpl">
+  <thead>
+    <tr>
+      <th>Produit</th>
+      <th>Fournisseur</th>
+      <th>Quantité</th>
+      <th>Prix</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of purchases">
+      <td>{{ p.productId.name }}</td>
+      <td>{{ p.supplierId.name }}</td>
+      <td>{{ p.quantity }}</td>
+      <td>{{ p.purchasePrice }}</td>
+      <td>{{ p.date }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #loadingTpl>
+  <p>Chargement des achats...</p>
+</ng-template>
+<app-footer></app-footer>

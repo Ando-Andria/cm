@@ -1,0 +1,109 @@
+<nav class="navbar">
+
+  <!-- Logo -->
+  <div class="logo">
+    <i class="fa-solid fa-bag-shopping"></i>
+    Ma Boutique
+  </div>
+
+  <!-- Hamburger -->
+  <input type="checkbox" id="menu-toggle"/>
+  <label for="menu-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
+
+  <ul class="nav-links">
+
+    <li>
+    <span class="nav-item" routerLink="/products-boutiques" style="cursor:pointer;">
+      <i class="fa-solid fa-box-open"></i>
+      Catalogue
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-tag"></i> Articles</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/purchase" style="cursor: pointer;">
+        <i class="fa-solid fa-cart-flatbed"></i> Achats
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-file-invoice-dollar"></i> Gestion achat</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/sales" style="cursor: pointer;">
+        <i class="fa-solid fa-cash-register"></i> Ventes
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-pen-to-square"></i> Enregistrer une vente</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/create-products" style="cursor: pointer;">
+        <i class="fa-solid fa-warehouse"></i> Produits
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-chart-bar"></i>Création d'un produit</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/promo" style="cursor: pointer;">
+        <i class="fa-solid fa-bullhorn"></i> Promos
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-percent"></i> Proposition de promotions</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/liste-order" style="cursor: pointer;">
+        <i class="fa-solid fa-truck-fast"></i> Commandes
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-circle-check"></i> Validation commande</li>
+        <li><i class="fa-solid fa-rotate"></i> Mise à jour stock</li>
+        <li><i class="fa-solid fa-map-location-dot"></i> Suivi livraison</li>
+      </ul>
+    </li>
+
+    <li>
+      <span class="nav-item" routerLink="/liste-notif" style="cursor: pointer;">
+        <i class="fa-solid fa-bell"></i> Notifications
+        <i class="fa-solid fa-chevron-down arrow"></i>
+      </span>
+      <ul class="dropdown">
+        <li><i class="fa-solid fa-bag-shopping"></i> Nouvelles commandes</li>
+        <li><i class="fa-solid fa-triangle-exclamation"></i> Stock faible</li>
+      </ul>
+    </li>
+
+    <li class="no-dropdown">
+      <span class="nav-item active" routerLink="/boutique/main" style="cursor:pointer;">
+        <i class="fa-solid fa-gauge-high"></i> Dashboard
+      </span>
+    </li>
+
+  <li>
+    <span class="nav-item" routerLink="/login" style="cursor: pointer;">
+      <i class="fa-solid fa-sign-in-alt"></i> Login
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </span>
+  </li>
+
+  <span class="nav-item" (click)="onLogout()" style="cursor: pointer;">
+    <i class="fa-solid fa-sign-out-alt"></i> Logout
+    <i class="fa-solid fa-chevron-down arrow"></i>
+  </span>
+  </ul>
+</nav>

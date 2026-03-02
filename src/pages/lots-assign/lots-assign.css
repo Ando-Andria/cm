@@ -1,0 +1,121 @@
+        .lot-form-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .floor-plan {
+            background-color: var(--background);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .floor-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0.5rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+        }
+        
+        .lot-cell {
+            aspect-ratio: 1;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: var(--surface);
+        }
+        
+        .lot-cell.available {
+            border-color: var(--success);
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .lot-cell.occupied {
+            border-color: var(--danger);
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .lot-cell.selected {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .lot-cell:hover:not(.occupied) {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .client-search-results {
+            background-color: var(--surface);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .client-search-results.active {
+            display: block;
+        }
+        
+        .client-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .client-result-item:hover {
+            background-color: var(--background);
+        }
+        
+        .client-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .selected-lot-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contract-preview {
+            background-color: var(--background);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 2px dashed var(--border-color);
+        }

@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<main class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">Gestion des Boutiques</h1>
+    <p class="page-subtitle">Vue d'ensemble et gestion de toutes les boutiques</p>
+  </div>
+
+  <div class="card">
+    <div class="flex-between mb-3">
+      <div class="search-bar" style="flex: 1; max-width: 500px;">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Rechercher par nom ou email"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        >
+      </div>
+      <div class="flex gap-2">
+        <button class="btn btn-primary" (click)="goToAddBoutique()">➕ Ajouter une boutique</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Catégorie</th>
+          <th>Responsable</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let boutique of filteredBoutiques">
+          <td>{{ boutique.nom }}</td>
+          <td>{{ boutique.email }}</td>
+          <td>{{ boutique.categorie?.name || 'Non définie' }}</td>
+          <td>{{ boutique.responsable.nom }} {{ boutique.responsable.prenom }} - {{ boutique.responsable.contact }}</td>
+          <td>
+            <button  *ngIf="boutique._id" 
+        class="btn btn-primary" (click)="editBoutique(boutique._id)">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

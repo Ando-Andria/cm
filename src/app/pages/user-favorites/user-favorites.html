@@ -1,0 +1,42 @@
+<!-- Bouton pour ouvrir le modal -->
+<button class="open-modal-btn" (click)="openModal()">Voir mes favoris ❤️</button>
+
+<!-- Modal -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">X</button>
+
+    <h2>Mes Favoris</h2>
+
+    <div *ngIf="favorites.length === 0">
+      <p>Aucun favori pour le moment.</p>
+    </div>
+
+    <div *ngFor="let fav of favorites">
+      <!-- Infos boutique -->
+      <div class="shop-info">
+        <img *ngIf="fav.shop.imageUrl" [src]="fav.shop.imageUrl" [alt]="fav.shop.name" class="shop-image">
+        <h3>{{ fav.shop.name }}</h3>
+        <p>Étage : {{ fav.shop.floor }} | Unite : {{ fav.shop.unitNumber }}</p>
+      </div>
+
+      <!-- Liste des produits favoris -->
+      <div class="product-list">
+        <div class="product-card" *ngFor="let product of fav.products">
+          <img *ngIf="product.imageUrl" [src]="product.imageUrl" [alt]="product.name" class="product-image">
+          <h4>{{ product.name }}</h4>
+          <p>{{ product.description }}</p>
+          <p>Prix : {{ product.price | currency:'MGA' }}</p>
+
+          <!-- Bouton favoris pour retirer -->
+         <app-favorite-button
+          [isFavorite]="!!product.isFavorite"  
+          (toggled)="toggleFavorite(fav.shop._id, product)">
+        </app-favorite-button>
+        </div>
+      </div>
+
+      <hr>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:host {
+  --azure-deep: #0353a4;
+  --azure:      #0e76d8;
+  --azure-mid:  #3b9eed;
+  --azure-soft: #c8e3fa;
+  --azure-pale: #e8f3fd;
+  --azure-glow: rgba(14, 118, 216, 0.18);
+  --surface:    #ffffff;
+  --text:       #081c3a;
+  --text-mid:   #2d4f7c;
+  --text-muted: #7999be;
+  --border:     #d4e6f8;
+  --ease:       cubic-bezier(.4, 0, .2, 1);
+  --t:          0.24s;
+}
+
+/* ── Backdrop ───────────────────────────────────────────── */
+.plan-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 20, 55, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 900;
+  animation: backdropIn 0.28s var(--ease) both;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Fenêtre principale ─────────────────────────────────── */
+.plan-modal {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--surface);
+  border-radius: 22px;
+  z-index: 901;
+  width: 92%;
+  max-width: 620px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    0 24px 80px rgba(3, 83, 164, 0.22),
+    0 4px 20px rgba(3, 83, 164, 0.10);
+  animation: modalIn 0.32s var(--ease) both;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.94) translateY(14px); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1)    translateY(0); }
+}
+
+/* Trait azur en haut */
+.plan-modal::before {
+  content: '';
+  display: block;
+  height: 5px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #0353a4 0%, #3b9eed 60%, #c8e3fa 100%);
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.plan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.plan-title-group {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.plan-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--azure-deep), var(--azure-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 3px 14px var(--azure-glow);
+  flex-shrink: 0;
+}
+
+.plan-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 3px;
+  line-height: 1.15;
+  background: linear-gradient(130deg, var(--text) 0%, var(--azure-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.plan-subtitle {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Bouton X fermer */
+.plan-btn-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background var(--t) var(--ease),
+    color      var(--t) var(--ease),
+    transform  var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+.plan-btn-close:hover {
+  background: var(--azure);
+  color: #fff;
+  border-color: var(--azure);
+  transform: rotate(90deg) scale(1.08);
+  box-shadow: 0 4px 14px var(--azure-glow);
+}
+
+/* ── Corps ──────────────────────────────────────────────── */
+.plan-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--azure-soft) transparent;
+}
+.plan-body::-webkit-scrollbar       { width: 4px; }
+.plan-body::-webkit-scrollbar-thumb { background: var(--azure-soft); border-radius: 4px; }
+
+/* Barre info */
+.plan-info-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--azure-pale);
+  border: 1px solid var(--azure-soft);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  font-weight: 400;
+}
+.plan-info-bar svg { color: var(--azure); flex-shrink: 0; opacity: 0.85; }
+
+/* Wrapper image */
+.plan-image-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 4px 20px rgba(3, 83, 164, 0.1);
+  cursor: zoom-in;
+  background: var(--azure-pale);
+}
+
+.plan-image {
+  width: 100%;
+  height: auto;
+  max-height: 30vh;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s var(--ease);
+}
+.plan-image-wrap:hover .plan-image {
+  transform: scale(1.03);
+}
+
+/* Badge agrandir au survol */
+.plan-zoom-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(3, 83, 164, 0.82);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity   var(--t) var(--ease),
+    transform var(--t) var(--ease);
+  pointer-events: none;
+}
+.plan-image-wrap:hover .plan-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.plan-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px 18px;
+  border-top: 1px solid var(--border);
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+}
+
+.plan-footer-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.plan-footer-hint svg { opacity: 0.6; }
+
+.plan-footer-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Bouton secondaire */
+.plan-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-mid);
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background    var(--t) var(--ease),
+    border-color  var(--t) var(--ease),
+    color         var(--t) var(--ease),
+    transform     var(--t) var(--ease);
+}
+.plan-btn-secondary:hover {
+  background: var(--azure-pale);
+  border-color: var(--azure-soft);
+  color: var(--azure-deep);
+  transform: translateY(-1px);
+}
+
+/* Bouton principal */
+.plan-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 20px;
+  border-radius: 9px;
+  border: none;
+  background: linear-gradient(135deg, var(--azure-deep) 0%, var(--azure) 100%);
+  color: #fff;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(14, 118, 216, 0.3),
+              inset 0 1px 0 rgba(255,255,255,0.18);
+  position: relative;
+  overflow: hidden;
+  transition:
+    filter    var(--t) var(--ease),
+    transform var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+
+/* Shimmer */
+.plan-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.42s var(--ease);
+}
+.plan-btn-primary:hover::before { left: 160%; }
+
+.plan-btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(3, 83, 164, 0.38);
+}
+.plan-btn-primary:active {
+  transform: scale(0.97);
+  filter: brightness(0.95);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 500px) {
+  .plan-modal      { width: 96%; border-radius: 18px 18px 0 0; top: auto; bottom: 0; transform: translateX(-50%); }
+  .plan-header,
+  .plan-body,
+  .plan-footer     { padding-left: 16px; padding-right: 16px; }
+  .plan-footer     { flex-direction: column; align-items: stretch; }
+  .plan-footer-actions { flex-direction: column; }
+  .plan-btn-secondary,
+  .plan-btn-primary { justify-content: center; width: 100%; }
+}

@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<div class="purchase-container">
+  <div class="form-wrapper">
+
+    <div class="form-header">
+      <h1 class="form-title">{{ modeEdition ? 'Modifier la Boutique' : 'Nouvelle Boutique' }}</h1>
+      <p class="form-subtitle">
+        {{ modeEdition ? 'Modifier les informations de la boutique' : 'Créer une nouvelle boutique' }}
+      </p>
+    </div>
+
+    <div *ngIf="showSuccess" class="success-message">
+      {{ modeEdition ? 'Boutique modifiée avec succès ✅' : 'Boutique créée avec succès ✅' }}
+    </div>
+ <div *ngIf="loginInfo && !modeEdition" class="login-info">
+    <p>💻 Email : {{ loginInfo.email }}</p>
+    <p>🔑 Mot de passe : {{ loginInfo.password }}</p>
+  </div>
+
+    <div *ngIf="errorMessage" class="field-error">{{ errorMessage }}</div>
+
+    <form [formGroup]="boutiqueForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Nom <span class="required-mark">*</span></label>
+          <input type="text" formControlName="nom" class="field-input" placeholder="Nom de la boutique">
+        </div>
+
+        <div class="form-field">
+          <label>Email <span class="required-mark">*</span></label>
+          <input type="email" formControlName="email" class="field-input" placeholder="Email">
+        </div>
+
+        <div class="form-field">
+          <label>Catégorie <span class="required-mark">*</span></label>
+          <select formControlName="categorie" class="field-input">
+            <option value="">Sélectionner une catégorie</option>
+            <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Nom Responsable <span class="required-mark">*</span></label>
+          <input type="text" formControlName="responsableNom" class="field-input" placeholder="Nom">
+        </div>
+
+        <div class="form-field">
+          <label>Prénom Responsable <span class="required-mark">*</span></label>
+          <input type="text" formControlName="responsablePrenom" class="field-input" placeholder="Prénom">
+        </div>
+
+        <div class="form-field">
+          <label>Contact Responsable <span class="required-mark">*</span></label>
+          <input type="text" formControlName="responsableContact" class="field-input" placeholder="Contact">
+        </div>
+
+        <div class="form-field">
+          <label>Cin Responsable <span class="required-mark">*</span></label>
+          <input type="text" formControlName="responsableCin" class="field-input" placeholder="Cin">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="boutiqueForm.invalid || loading">
+          {{ loading ? (modeEdition ? 'Modification...' : 'Création...') : (modeEdition ? 'Modifier' : 'Créer') }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

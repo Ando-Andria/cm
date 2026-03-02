@@ -1,0 +1,44 @@
+<div *ngIf="loading">Chargement...</div>
+
+<div *ngIf="!loading && orders.length === 0">
+  Aucune commande trouvée.
+</div>
+
+<div *ngFor="let order of orders" class="order-card">
+
+  <h3>Boutique : {{ order.shopId.name }}</h3>
+  <p>Date : {{ order.createdAt }}</p>
+
+  <p>
+    Statut commande :
+<strong [attr.data-order-status]="order.status">{{ order.status }}</strong>
+
+  <p>
+    Paiement :
+<strong [attr.data-payment-status]="order.paymentStatus">{{ order.paymentStatus }}</strong>
+
+  <p>
+    Livraison :
+  <strong [attr.data-delivery-status]="order.deliveryStatus">{{ order.deliveryStatus }}</strong>
+  </p>
+
+  <h4>Produits :</h4>
+  <ul>
+    <li *ngFor="let product of order.products">
+      {{ product.productId.name }}
+      - Quantité : {{ product.quantity }}
+      - Prix : {{ product.price }} Ar
+    </li>
+  </ul>
+
+  <h4>Total : {{ order.totalAmount }} Ar</h4>
+
+<button
+  *ngIf="canMarkDelivered(order)"
+  (click)="markDelivered(order)">
+  Marquer comme livrée
+</button>
+
+  <hr>
+</div>
+<app-footer></app-footer>

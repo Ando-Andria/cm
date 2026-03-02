@@ -1,0 +1,102 @@
+<!-- ═══════════════════════════════════════════════
+     MODAL PLAN DU MALL — plan-mall.html
+     ═══════════════════════════════════════════════ -->
+
+<!-- Backdrop -->
+<div class="plan-backdrop" (click)="closeModal()"></div>
+
+<!-- Fenêtre -->
+<div class="plan-modal">
+
+  <!-- Bande azur top (via CSS ::before) -->
+
+  <!-- ── Header ── -->
+  <div class="plan-header">
+    <div class="plan-title-group">
+      <div class="plan-icon">🗺️</div>
+      <div>
+        <h2 class="plan-title">Plan du Mall</h2>
+        <p class="plan-subtitle">Galeries du Parc — Vue générale</p>
+      </div>
+    </div>
+    <button class="plan-btn-close" (click)="closeModal()" aria-label="Fermer">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── Corps ── -->
+  <div class="plan-body">
+
+    <!-- Info bar -->
+    <div class="plan-info-bar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      Survolez l'image pour zoomer · Cliquez pour l'ouvrir en plein écran
+    </div>
+
+    <!-- Image -->
+    <div class="plan-image-wrap" (click)="openFullscreen()">
+      <img
+        src="https://www.siliconcentral.ae/media/2689/sc-ground-floor.jpg"
+        alt="Plan du centre commercial"
+        class="plan-image"
+      />
+      <div class="plan-zoom-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+          <line x1="11" y1="8" x2="11" y2="14"/>
+          <line x1="8" y1="11" x2="14" y2="11"/>
+        </svg>
+        Agrandir
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="plan-footer">
+    <span class="plan-footer-hint">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Mis à jour le 15/01/2026
+    </span>
+    <div class="plan-footer-actions">
+      <button class="plan-btn-secondary" (click)="openFullscreen()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+        </svg>
+        Plein écran
+      </button>
+      <button class="plan-btn-secondary" (click)="downloadPlan()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Télécharger
+      </button>
+      <button class="plan-btn-primary" (click)="closeModal()">
+        Fermer
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>

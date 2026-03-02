@@ -1,0 +1,49 @@
+<h3>Promotions de la boutique</h3>
+
+<div *ngIf="loading">
+  <p>Chargement des promotions...</p>
+</div>
+
+<div *ngIf="!loading && promotions.length === 0">
+  <p>Aucune promotion disponible.</p>
+</div>
+
+<table *ngIf="!loading && promotions.length > 0">
+  <thead>
+    <tr>
+      <th>Produit</th>
+      <th>Titre</th>
+      <th>Remise</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Statut</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let promo of promotions">
+      <td>{{ promo.productId?.name || 'Produit supprimé' }}</td>
+      <td>{{ promo.title }}</td>
+      <td>{{ promo.discountPercent }}%</td>
+      <td>{{ formatDate(promo.startDate) }}</td>
+      <td>{{ formatDate(promo.endDate) }}</td>
+      <td>
+        <span
+          class="badge"
+          [ngClass]="{
+            'active': getStatus(promo) === 'active',
+            'expired': getStatus(promo) === 'expired'
+          }"
+        >
+          {{ getStatus(promo) }}
+        </span>
+      </td>
+      <td>
+        <button class="btn-delete" (click)="deletePromotion(promo._id)">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<app-footer></app-footer>
