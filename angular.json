@@ -33,8 +33,7 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            },
-            "inlineFonts": false   
+            }
           },
           "configurations": {
             "production": {
