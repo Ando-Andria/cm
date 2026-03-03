@@ -1,7 +1,7 @@
 const Cart = require('../models/client/Cart');
 const Product = require('../models/boutique/Products');
 const Order = require('../models/boutique/Order');
-const { addNotification } = require('./notificationController');
+const { addNotification } = require('./NotificationController');
 
 // Ajouter un produit au panier
 exports.addToCart = async (req, res) => {
