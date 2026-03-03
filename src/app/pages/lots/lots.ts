@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Header } from "../header/header";
+import { ChangeDetectorRef } from '@angular/core';
+
 export interface Lot {
   _id?: string;
   numero: string;
@@ -33,7 +35,8 @@ export class Lots implements OnInit {
   occupiedLots = 0;
 
   constructor(private apiService: ApiService,
-     private router: Router
+     private router: Router,
+     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +52,7 @@ goToEditLot(lotId: string) {
         console.log(this.lots);
         this.filteredLots = data; // initialement tout afficher
         this.calculateStats();
+         this.cdr.detectChanges();
       },
       error: (err) => console.error('Erreur lors du chargement des lots :', err)
     });
