@@ -38,6 +38,8 @@ export const routes: Routes = [
     {path : 'customer-order', component : CustomerOrders},
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     {path : 'lots', component : Lots},
+    {path : 'admin', component : Lots},
+    {path : 'client', component : Lots},
     {path : 'lots/add', component : AddLot},
     {path: 'lots/add/:id',component: AddLot}, 
     {path : 'boutiques', component : Boutique},

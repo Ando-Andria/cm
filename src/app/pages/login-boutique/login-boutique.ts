@@ -48,10 +48,27 @@ login() {
 
         this.loading = false;
         console.log('🔹 loader désactivé, navigation vers /boutique/main');
+     // Redirection selon rôle
+          let redirectUrl = '/';
+          switch (res.role.toLowerCase()) {
+            case 'admin':
+              redirectUrl = '/admin';
+              break;
+            case 'boutique':
+              redirectUrl = '/boutique/main';
+              break;
+            case 'client':
+              redirectUrl = '/client';
+              break;
+            default:
+              console.warn('⚠️ Rôle inconnu, redirection vers /');
+          }
 
-        this.router.navigate(['/boutique/main']).then(() => {
-          console.log('🔹 Navigation terminée vers /boutique/main');
-        });
+          this.loading = false;
+          console.log(`🔹 Navigation vers ${redirectUrl}`);
+          this.router.navigate([redirectUrl]).then(() => {
+            console.log(`🔹 Navigation terminée vers ${redirectUrl}`);
+          });
       },
 
       error: (err) => {
