@@ -46,6 +46,7 @@ goToEditLot(lotId: string) {
     this.apiService.getList<Lot[]>(ApiEndpoints.LOTS.GETALL).subscribe({
       next: (data) => {
         this.lots = data;
+        console.log(this.lots);
         this.filteredLots = data; // initialement tout afficher
         this.calculateStats();
       },
