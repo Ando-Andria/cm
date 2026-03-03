@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Header } from '../header/header';
+import { ChangeDetectorRef } from '@angular/core';
 
 export interface Responsable {
   nom: string;
@@ -34,7 +35,9 @@ export class Boutique implements OnInit {
   filteredBoutiques: Boutique[] = [];
   searchTerm: string = '';
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService, private router: Router,    
+     private cdr: ChangeDetectorRef
+) {}
 
   ngOnInit(): void {
     this.loadBoutiques();
@@ -45,6 +48,7 @@ export class Boutique implements OnInit {
       next: data => {
         this.boutiques = data;
         this.filteredBoutiques = data;
+        this.cdr.detectChanges();
       },
       error: err => console.error('Erreur lors du chargement des boutiques', err)
     });
