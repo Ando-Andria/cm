@@ -52,7 +52,7 @@ filterStatut: string = '';
       },
       error: err => console.error('Erreur chargement contrats', err)
     });
-             this.cdr.detectChanges();
+    this.cdr.detectChanges();
 
   }
 

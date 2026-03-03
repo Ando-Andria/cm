@@ -6,10 +6,12 @@ import { ApiService } from '../../../shared/service/api.service';
 import { ApiEndpoints } from '../../../shared/constants/api-endpoints';
 import { Header } from '../../header/header';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @Component({
   selector: 'app-add-boutique',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, Header],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, Header],
   templateUrl: './add-boutique.html',
   styleUrls: ['./add-boutique.css']
 })
