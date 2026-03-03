@@ -7,7 +7,9 @@
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
+    "serve:ssr:frontend": "node dist/frontend/server/server.mjs",
+  "postbuild": "cp src/assets/_redirects dist/frontend/browser/_redirects"
+
   },
   "prettier": {
     "printWidth": 100,
