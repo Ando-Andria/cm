@@ -109,7 +109,7 @@ loginInfo: { email: string; password: string } | null = null;
     this.loading = true;
     this.showSuccess = false;
     this.errorMessage = '';
-
+console.log(data);
     if (this.modeEdition && this.boutiqueId) {
       this.api.update(`${ApiEndpoints.BOUTIQUES.GETALL}${this.boutiqueId}`, data).subscribe({
         next: () => {
