@@ -57,10 +57,11 @@ loginInfo: { email: string; password: string } | null = null;
   loadCategories(): void {
     this.api.getList<any[]>(ApiEndpoints.CATEGORIES.GETALL).subscribe({
       next: data => this.categories = data,
-              this.cdr.detectChanges();
 
       error: err => console.error('Erreur lors du chargement des catégories', err)
     });
+                  this.cdr.detectChanges();
+
   }
 
   loadBoutique(id: string): void {
