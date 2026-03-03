@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Header } from '../header/header';
+import { ChangeDetectorRef } from '@angular/core';
+
 export interface Contrat {
   _id?: string;
   boutiqueId: string | { _id: string; nom: string };
@@ -36,7 +38,7 @@ filterLot: string = '';
 filterDateDebut: string = '';
 filterDateFin: string = '';
 filterStatut: string = '';
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadContrats();
@@ -50,6 +52,8 @@ filterStatut: string = '';
       },
       error: err => console.error('Erreur chargement contrats', err)
     });
+             this.cdr.detectChanges();
+
   }
 
   goToEditContrat(id: string) {
